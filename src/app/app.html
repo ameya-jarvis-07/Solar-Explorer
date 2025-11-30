@@ -1,0 +1,61 @@
+<canvas #canvas></canvas>
+
+<div class="sidebar">
+  <header class="header">
+    <h1 class="title">SOLAR EXPLORER</h1>
+  </header>
+
+  <nav class="planet-list">
+    @for (planet of planets; track planet.name; let i = $index) {
+      <button 
+        class="planet-item"
+        [class.active]="i === currentPlanetIndex()"
+        (click)="scrollToPlanet(i)">
+        <div class="planet-icon" [style.background]="planet.color"></div>
+        <div class="planet-info">
+          <span class="planet-name">{{ planet.name }}</span>
+          <span class="planet-distance">{{ planet.distance }} AU</span>
+        </div>
+      </button>
+    }
+  </nav>
+</div>
+
+<div class="content-wrapper">
+  @for (planet of planets; track planet.name; let i = $index) {
+    <section class="planet-section"></section>
+  }
+</div>
+
+<div class="info-container" [class.expanded]="showFacts()">
+  @if (currentPlanet()) {
+    <div class="planet-details">
+      <div class="planet-header" [class.fade-up]="showFacts()">
+        <p class="label">PLANET</p>
+        <h2 class="planet-title">{{ currentPlanet().name }}</h2>
+      </div>
+      
+      <p class="planet-description" [class.fade-up]="showFacts()">{{ currentPlanet().description }}</p>
+      
+      <button class="read-more" (click)="toggleFacts()">
+        {{ showFacts() ? 'SHOW LESS' : 'READ MORE' }}
+      </button>
+
+      @if (showFacts()) {
+        <div class="planet-facts">
+          <h3>KEY FACTS</h3>
+          <ul>
+            @for (fact of currentPlanet().facts; track fact) {
+              <li>{{ fact }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+<div class="scroll-indicator">
+  <p>SCROLL TO EXPLORE</p>
+  <div class="scroll-line"></div>
+</div>
