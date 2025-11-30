@@ -2,6 +2,18 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
 
+## GitHub Pages Deployment
+
+This project is configured for automatic deployment to GitHub Pages. When you push to the `main` branch, a GitHub Actions workflow will build and deploy the application automatically.
+
+### Enable GitHub Pages (Required First-Time Setup)
+
+1. Go to your repository's **Settings** → **Pages**
+2. Under "Build and deployment", select **GitHub Actions** as the Source
+3. The workflow will run on the next push to `main` or you can trigger it manually from the Actions tab
+
+Once deployed, your site will be available at: `https://<username>.github.io/<repository-name>/`
+
 ## Development server
 
 To start a local development server, run:
